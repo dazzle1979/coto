@@ -222,6 +222,8 @@ class Client(BaseClient):
 
         if mfa_secret is not None:
             data['mfa1'] = TOTP(mfa_secret).now()
+            data['mfaType'] = 'OTP'
+            data['mfaSerial'] = 'undefined'
 
         # an exception is thrown if authentication was unsuccessful
         self._action('authenticateRoot', data, captcha_guess=captcha_guess)
